@@ -19,8 +19,8 @@ rm hosts.a
 for a in $@; do 
 	ssh-keyscan -t rsa,dsa $a >> ~/.ssh/known_hosts
 	sshpass -p "$pass" ssh-copy-id $user@$a
-	ssh $user@$a "echo $pass|sudo cat /home/$user/.ssh/authorized_keys >> /root/.ssh/authorized_keys"
-	echo 	ssh $user@$a "echo $pass|sudo cat /home/$user/.ssh/authorized_keys >> /root/.ssh/authorized_keys"
+	ssh $user@$a "echo $pass|sudo -S cat /home/$user/.ssh/authorized_keys >> /root/.ssh/authorized_keys"
+	echo 	ssh $user@$a "echo $pass|sudo -S cat /home/$user/.ssh/authorized_keys >> /root/.ssh/authorized_keys"
 	echo -ne "${a}," >> hosts.a 
 done
 sed -i s/,$// hosts.a
