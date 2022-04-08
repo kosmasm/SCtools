@@ -3,7 +3,10 @@
   gather_facts: yes
   any_errors_fatal: true
   tasks:
-    - name: Set authorized key taken from file
+    - name: Set up multiple authorized keys
       ansible.posix.authorized_key:
+        user: deploy
         state: present
-        key: "{{ lookup('file', './hosts.a') }}"
+        key: '{{ item }}'
+      with_file:
+        - authorized_keys
