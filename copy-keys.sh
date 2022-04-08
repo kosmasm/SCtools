@@ -15,7 +15,10 @@
 user=$1
 pass=$2
 shift;shift
+rm hosts.a
 for a in $@; do 
 	echo ssh-keyscan -t rsa,dsa $a >> ~/.ssh/authorized_keys
 	sshpass -p "$pass" ssh-copy-id $user@$a
+	echo -ne "${a}," >> hosts.a 
 done
+sed -i s/,$// hosts.a
