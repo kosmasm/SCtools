@@ -5,7 +5,14 @@
   tasks:
     - name: Set up multiple authorized keys
       ansible.posix.authorized_key:
-        user: deploy
+        user: root
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - authorized_keys
+    - name: Set up multiple authorized keys
+      ansible.posix.authorized_key:
+        user: mooadmin
         state: present
         key: '{{ item }}'
       with_file:
