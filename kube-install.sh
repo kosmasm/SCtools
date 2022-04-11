@@ -48,8 +48,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 # Set systemd cgroups for containerd
 sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
-sudo sed -i s/systemd_cgroup\ =\ false/systemd_cgroup\ =\ true/ /etc/containerd/config.toml
-sudo systemctl restart containerd
+# sudo sed -i s/systemd_cgroup\ =\ false/systemd_cgroup\ =\ true/ /etc/containerd/config.toml
+# sudo systemctl restart containerd
 
 # Below is CRI-O
 #export OS=xUbuntu_20.04
