@@ -15,7 +15,7 @@ pipeline {
 
     stage('shell') {
       steps {
-        sh '''ps -ef
+        sh '''ls /
 '''
       }
     }
